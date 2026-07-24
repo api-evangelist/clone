@@ -1,0 +1,41 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/clonerobotics/clone_client/tree/main/clone_client/proto
+notes: >-
+  proto3 service definitions extracted verbatim from the first-party
+  clone_client package (clone_client/proto/*). These define the gRPC control
+  plane for the Clone Robot. Saved unmodified — provenance tracked here because
+  .proto files carry no frontmatter.
+protos:
+- file: clone-controller.proto
+  package: clone.controller
+  service: ControllerGRPC
+  summary: >-
+    High-level muscle control — set impulses/pulses/pressures, lock/loose
+    muscles, pinch-valve and hydra control (incl. streaming), and the water
+    pump (pressure source): start/stop, get info, set pressure.
+- file: clone-hardware_driver.proto
+  package: clone.hardware_driver
+  service: HardwareDriverGRPC
+  summary: >-
+    Low-level hardware bus driver — direct/impulse/pressure sends, pinch-valve
+    control/commands, node discovery and settings, IMU and GaussRider sensor
+    spec settings, telemetry pause, error retrieval.
+- file: clone-state_store.proto
+  package: clone.state_store
+  service: StateStoreReceiverGRPC
+  summary: >-
+    Telemetry and system state — subscribe/get telemetry stream (IMU, sensors,
+    pose estimation, joint models, muscle info), system info, ping, errors.
+- file: clone-camera_driver.proto
+  package: clone.camera_driver
+  service: CameraDriverService
+  summary: >-
+    Camera driver — get config, list streams, and manage stream sinks
+    (list/add/remove).
+- file: clone-data_types.proto
+  package: clone.data_types
+  service: null
+  summary: >-
+    Shared types and error envelope — ErrorType enum, ErrorInfo, ServerResponse
+    (success + optional error), ErrorList. Imported by the service definitions.

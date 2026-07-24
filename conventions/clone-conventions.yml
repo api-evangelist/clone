@@ -1,0 +1,44 @@
+generated: '2026-07-18'
+method: derived
+source: grpc/*.proto + https://github.com/clonerobotics/clone_client
+notes: >-
+  Cross-cutting semantics of the Clone Robot API, derived from the proto3
+  definitions and the clone_client README. This is a local-network gRPC control
+  API for physical robot hardware, not a public HTTP/REST API.
+transport:
+  protocol: gRPC (proto3)
+  scope: local network (LAN) to the robot; not a hosted/public endpoint
+  services: [ControllerGRPC, HardwareDriverGRPC, StateStoreReceiverGRPC, CameraDriverService]
+discovery:
+  mechanism: zeroconf / mDNS
+  by: robot name (unique name provided with the Clone Robot) or direct IP address
+  client: clone_client.client.Client("robot") or Client(address="192.168.1.10")
+clients:
+  async: clone_client.client (asyncio)
+  sync: clone_client.sync.client (near drop-in; construct via address only)
+streaming:
+  supported: true
+  rpcs: [StreamSetPressures, StreamManyPinchValveControl, StreamManyHydraControl,
+    StreamManyPressure, SubscribeTelemetry]
+  notes: Client-streaming for high-rate control; server-streaming for telemetry.
+error_envelope:
+  message: clone.data_types.ServerResponse
+  shape: '{ success: bool, error?: ErrorInfo }'
+  catalog: errors/clone-error-codes.yml
+health:
+  ping: Ping RPC on ControllerGRPC and StateStoreReceiverGRPC
+  errors: GetErrors RPC exposes collected ErrorList (collection can be disabled)
+idempotency:
+  documented: false
+  notes: >-
+    No idempotency-key contract is documented. Control calls are stateful
+    physical actuation (set muscle pressures, run pump) and are not safe to
+    blindly retry; no Idempotency pointer is emitted.
+authentication:
+  documented: false
+  notes: >-
+    Access is by LAN reachability and robot name/address; no token or key auth
+    is documented in the client or protos.
+versioning:
+  scheme: git-tag
+  notes: Each package update is shipped as a GitHub tag; pre-beta, breaking changes expected.

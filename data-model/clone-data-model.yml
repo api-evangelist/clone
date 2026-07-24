@@ -1,0 +1,61 @@
+generated: '2026-07-18'
+method: derived
+source: grpc/*.proto
+notes: >-
+  Entity graph derived from the proto3 message/service definitions of the Clone
+  Robot gRPC control plane. Not an OpenAPI $ref graph — this is the protobuf
+  service/message surface. Relationships are message composition and service
+  ownership.
+services:
+- name: ControllerGRPC
+  proto: grpc/clone-controller.proto
+  domain: muscle & pressure control
+  rpcs: [SetImpulses, SetPulses, SetPressures, LooseMuscles, LockMuscles, StreamSetPressures,
+    SendPinchValveControl, SendManyPinchValveControl, StreamManyPinchValveControl,
+    SendPinchValveCommand, SendManyPinchValveCommand, SendHydraControl, SendManyHydraControl,
+    StreamManyHydraControl, GetWaterPumpInfo, StartWaterPump, StopWaterPump, SetWaterPumpPressure,
+    GetConfig, GetNodes, Ping, GetErrors]
+- name: HardwareDriverGRPC
+  proto: grpc/clone-hardware_driver.proto
+  domain: low-level hardware bus & sensors
+  rpcs: [SendDirect, SendManyDirect, SendImpulse, SendManyImpulse, SendPinchValveControl,
+    SendManyPinchValveControl, StreamManyPinchValveControl, SendPinchValveCommand,
+    SendManyPinchValveCommand, SendManyPressure, StreamManyPressure, GetNodes, PingNode,
+    Discovery, GetNodesSettings, GetGaussRiderSpecSettings, GetIMUSpecSettings, SetIMUSpecSettings,
+    GetErrors, PauseTelemetry]
+- name: StateStoreReceiverGRPC
+  proto: grpc/clone-state_store.proto
+  domain: telemetry & system state
+  rpcs: [SubscribeTelemetry, GetTelemetry, GetSystemInfo, Ping, GetErrors]
+- name: CameraDriverService
+  proto: grpc/clone-camera_driver.proto
+  domain: camera streams & sinks
+  rpcs: [GetConfig, ListStreams, ListSinks, AddSink, RemoveSink, RemoveAllSinks]
+entities:
+- name: Muscle
+  domain: controller/hardware
+  described_by: [Impulse, Pulse, PressureControl, SetPressuresMessage]
+  notes: Actuated musculotendon unit; addressed within batch control messages.
+- name: WaterPump
+  domain: controller
+  described_by: [WaterPumpInfo, WaterPumpInfoResponse, WaterPumpPressure]
+  notes: Pressure source; may be absent when an external pressure source is used.
+- name: Node
+  domain: hardware_driver
+  described_by: [BusDevice, NodeList, NodeMap]
+  relationships:
+  - {type: has_many, target: BusDevice, via: NodeList}
+- name: Telemetry
+  domain: state_store
+  described_by: [TelemetryData, TelemetryDataResponse, IMUData, SensorData, PoseEstimationData]
+  relationships:
+  - {type: has_many, target: Joint, via: JointModelInfo}
+  - {type: has_many, target: MuscleInfo, via: SystemInfo}
+- name: Joint
+  domain: state_store
+  described_by: [Joint, JointExt, JointModelInfo, JointFrames]
+- name: CameraStream
+  domain: camera_driver
+  described_by: [ListStreamsResponse, Sink]
+  relationships:
+  - {type: has_many, target: Sink, via: ListSinksResponse}

@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: derived
+source: grpc/clone-data_types.proto
+format: grpc-status-envelope
+envelope:
+  message: clone.data_types.ServerResponse
+  fields:
+    success: bool
+    error: clone.data_types.ErrorInfo (optional)
+  error_info_fields:
+    error: clone.data_types.ErrorType (enum)
+    info: string
+    subtype: optional uint32
+    location: optional string
+    timestamp: google.protobuf.Timestamp
+  batch: clone.data_types.ErrorList (repeated ErrorInfo; null errors_list means error collection is disabled)
+notes: >-
+  The Clone Robot gRPC API returns a ServerResponse on control calls (success
+  flag plus an optional ErrorInfo). This catalog is derived from the ErrorType
+  enum in data_types.proto; the free-text `info` and `subtype` carry the
+  specifics. No public docs error reference was found to enrich remediation.
+error_types:
+- code: UNKNOWN
+  value: 0
+  meaning: Unspecified / unclassified error.
+- code: GOLEM_ERROR
+  value: 1
+  meaning: Internal robot ("golem") subsystem error.
+- code: WRONG_REQUEST
+  value: 2
+  meaning: The request was malformed or invalid for the current robot state.
+- code: DISABLED_FUNCTIONALITY
+  value: 3
+  meaning: >-
+    The requested functionality is disabled or unavailable on this hardware
+    (e.g. water pump API when an external pressure source is in use).
+- code: SNAIL_ERROR
+  value: 4
+  meaning: SNAIL subsystem error.

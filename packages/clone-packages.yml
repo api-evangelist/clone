@@ -1,0 +1,44 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/clonerobotics
+notes: >-
+  Clone Robotics ships its client as a Python package installed directly from
+  GitHub (Poetry project, pre-beta). It is NOT published to PyPI yet
+  (pypi.org/pypi/clone-client returns 404 as of this probe); the README states
+  "we do not provide PyPI releases just yet, but you can use this repository as
+  an installation candidate using pip". Development happens outside GitHub and
+  each update is shipped as a git tag.
+packages:
+- language: python
+  registry: github
+  name: clone-client
+  repo: https://github.com/clonerobotics/clone_client
+  url: https://github.com/clonerobotics/clone_client
+  install: pip install git+https://github.com/clonerobotics/clone_client.git
+  version: 0.0.48
+  license: GPL-3.0
+  official: true
+  description: >-
+    High-level API to directly control the Clone Robot over gRPC — muscles,
+    pinch/hydra valves, water pump (pressure source), telemetry and camera.
+    Ships both asyncio and synchronous clients; robot discovery via zeroconf
+    (mDNS) by name or direct IP address.
+- language: python
+  registry: github
+  name: clone-client-env
+  repo: https://github.com/clonerobotics/clone_client_env
+  url: https://github.com/clonerobotics/clone_client_env
+  install: pip install git+https://github.com/clonerobotics/clone_client_env.git
+  official: true
+  description: Gym-like reinforcement-learning environment wrapper around clone_client.
+- language: python
+  registry: github
+  name: clone-client-sync
+  repo: https://github.com/clonerobotics/clone_client_sync
+  url: https://github.com/clonerobotics/clone_client_sync
+  install: pip install git+https://github.com/clonerobotics/clone_client_sync.git
+  official: true
+  deprecated: true
+  description: >-
+    Standalone synchronous wrapper — DEPRECATED and unmaintained; the sync
+    client is now a native part of the clone_client core library.

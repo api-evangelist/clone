@@ -1,9 +1,31 @@
 aid: clone
 name: Clone
-description: 'Clone is a company surfaced as a portfolio company of initialized-capital and added to the
-  API Evangelist network as a stub for enrichment. Sector: frontier-tech. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Clone Robotics develops musculoskeletal, intelligent humanoid androids and
+  robotic hands built on Myofiber, its artificial-muscle technology pioneered in
+  2021, driven by water-based hydraulics and biomimetic joints. Its flagship
+  Clone Alpha is a full-body biomimetic humanoid with synthetic organs; the
+  Clone Hand is its foundational dexterous-manipulation platform. The developer
+  surface is a first-party Python client (clone_client) exposing a high-level
+  gRPC (proto3) API to directly control the Clone Robot over the local network —
+  actuating muscles via impulses/pulses/pressures, driving pinch and hydra
+  valves, managing the water-pump pressure source, streaming IMU/pose/joint
+  telemetry, and configuring cameras. There is no public HTTP/REST API or hosted
+  endpoint; control is LAN-scoped gRPC discovered over zeroconf/mDNS by robot
+  name or IP. Co-founded 2021 by Dhanush Radhakrishna and Lukasz Kozlik.
 url: https://raw.githubusercontent.com/api-evangelist/clone/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://avatars.githubusercontent.com/u/140611352?v=4
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -12,11 +34,43 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
 - Frontier Tech
-apis: []
+- Robotics
+- Humanoid
+- Androids
+- Artificial Muscle
+- gRPC
+- Hardware
+- Actuation
+apis:
+- name: Clone Robot Control API
+  description: >-
+    High-level gRPC (proto3) API to directly control the Clone Robot — muscle
+    actuation (impulses/pulses/pressures), pinch/hydra valve control, water-pump
+    pressure source, telemetry streaming, and camera management. Delivered as
+    the first-party clone_client Python package; discovered over zeroconf/mDNS
+    on the local network. No public hosted endpoint.
+  humanURL: https://github.com/clonerobotics/clone_client
+  x-transport: grpc-lan
+  properties:
+  - type: Protobuf
+    name: ControllerGRPC service (muscles, valves, water pump)
+    url: grpc/clone-controller.proto
+  - type: Protobuf
+    name: HardwareDriverGRPC service (bus, nodes, sensors)
+    url: grpc/clone-hardware_driver.proto
+  - type: Protobuf
+    name: StateStoreReceiverGRPC service (telemetry, system state)
+    url: grpc/clone-state_store.proto
+  - type: Protobuf
+    name: CameraDriverService (camera streams & sinks)
+    url: grpc/clone-camera_driver.proto
+  - type: Protobuf
+    name: Shared data types & error envelope
+    url: grpc/clone-data_types.proto
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +79,40 @@ maintainers:
 common:
 - type: Website
   url: https://clonerobotics.com/
+- type: GitHubOrganization
+  url: https://github.com/clonerobotics
+- type: SourceCode
+  url: https://github.com/clonerobotics/clone_client
+- type: Packages
+  url: packages/clone-packages.yml
+- type: SDKs
+  url: packages/clone-packages.yml
+- type: Protobuf
+  url: grpc/_index.yml
+- type: DataModel
+  url: data-model/clone-data-model.yml
+- type: ErrorCatalog
+  url: errors/clone-error-codes.yml
+- type: Conventions
+  url: conventions/clone-conventions.yml
+- type: DomainSecurity
+  url: security/clone-domain-security.yml
+- type: LLMsTxt
+  url: llms/clone-llms.txt
+- type: PrivacyPolicy
+  url: https://clonerobotics.com/privacy-policy
+- type: TermsOfService
+  url: https://clonerobotics.com/terms-of-use
+- type: X
+  url: https://x.com/clonerobotics
+- type: LinkedIn
+  url: https://www.linkedin.com/company/clonerobotics/
+- type: YouTube
+  url: https://www.youtube.com/channel/UCd0xLOw6No5IAsq3Y2-b0eA
+- type: Instagram
+  url: https://www.instagram.com/clonerobotics
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
