@@ -64,6 +64,87 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Clone is a company surfaced as a portfolio company of initialized-capital and added to the API Evangelist network as a stub for enrichment. Sector: frontier-tech. This profile is a lead awaiting the enrichment pipeline.
+Clone Robotics develops musculoskeletal, intelligent humanoid androids and robotic hands built on Myofiber, its artificial-muscle technology pioneered in 2021, driven by water-based hydraulics and biomimetic joints. Its flagship Clone Alpha is a full-body biomimetic humanoid with synthetic organs; the Clone Hand is its foundational dexterous-manipulation platform. The developer surface is a first-party Python client (clone_client) exposing a high-level gRPC (proto3) API to directly control the Clone Robot over the local network — actuating muscles via impulses/pulses/pressures, driving pinch and hydra valves, managing the water-pump pressure source, streaming IMU/pose/joint telemetry, and configuring cameras. There is no public HTTP/REST API or hosted endpoint; control is LAN-scoped gRPC discovered over zeroconf/mDNS by robot name or IP. Co-founded 2021 by Dhanush Radhakrishna and Lukasz Kozlik.
 
-Backed by: initialized-capital — https://clonerobotics.com/
+**Areas:** Company · Frontier Tech · Robotics · Humanoid · Androids · Artificial Muscle · gRPC · Hardware · Actuation
+
+## Clone on APIs.io
+
+Everything profiled for Clone is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/clone/](https://apis.io/providers/clone/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Clone Robot Control API](https://apis.io/apis/clone/clone-robot-control-api/) — High-level gRPC (proto3) API to directly control the Clone Robot — muscle actuation (impulses/pulses/pressures), pinch/hydra valve control, water-pump…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Clone Domain Security](https://apis.io/security/clone/clone-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://clonerobotics.com/)
+- [Blog](https://clonerobotics.com/blog/)
+- [Terms of service](https://clonerobotics.com/terms-of-use)
+- [Privacy policy](https://clonerobotics.com/privacy-policy)
+- [GitHub](https://github.com/clonerobotics)
+
+## API Evangelist rating
+
+**Kin Score 18.7** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 24.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 9.5 |
+| Access clarity | 21.1 |
+
+**Agent readiness 13.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 13.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/clone/](https://apis.io/providers/clone/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Clone: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/clone/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
